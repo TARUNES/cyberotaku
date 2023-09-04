@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "671254775319",
+    "project_id": "cyberotaku-dddca",
+    "storage_bucket": "cyberotaku-dddca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671254775319:android:c419c2713509d2b7bdfe52",
+        "android_client_info": {
+          "package_name": "com.cyberotaku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671254775319-n67qr5ef6i4p19ssrapjshc827u74j0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQXuiheEcXpzw6g44sn7o4fR6fvavJcGo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671254775319-n67qr5ef6i4p19ssrapjshc827u74j0k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
