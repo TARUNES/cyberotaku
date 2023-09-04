@@ -7,19 +7,35 @@ import { NavigationContainer } from '@react-navigation/native';
 import SignUp from './screens/SignUp'
 import Login from './screens/Login'
 import Home from './screens/Home';
+import TabNav from './routes/TabNav';
+import NavBar from './components/NavBar';
+import Feed from './screens/Feed';
+import Schudle from './screens/Schudle';
+import AddSchedule from './screens/AddSchedule';
 
 const App = () => {
 
   const Stack = createStackNavigator();
   return (
-    <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="SignUp" component={SignUp} />
-      <Stack.Screen name="Login" component={Login} />
-      {/* <Stack.Screen name="Settings" component={Settings} /> */}
-    </Stack.Navigator>
-    </NavigationContainer>
+    // <NavigationContainer>
+    // <Stack.Navigator>
+    //   <Stack.Screen name="Home" component={Home} />
+    //   <Stack.Screen name="SignUp" component={SignUp} />
+    //   <Stack.Screen name="Login" component={Login} />
+    //   <Stack.Screen name="Nav" component={NavBar} />
+    //   <Stack.Screen name="Feed" component={Feed} />
+    //   <Stack.Screen name="Sceudle" component={Schudle} />
+
+    //   {/* <Stack.Screen name="Settings" component={Settings} /> */}
+    //   <Stack.Screen
+    //       name="TabNav"
+    //       component={TabNav}
+    //       options={{headerShown: false}}
+    //     />
+    // </Stack.Navigator>
+    // </NavigationContainer>
+    // <Schudle></Schudle>
+    <AddSchedule></AddSchedule>
   )
 }
 

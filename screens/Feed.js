@@ -1,16 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Navbar from '../components/NavBar'
 
-const Home = ({navigation}) => {
+const Feed = () => {
   return (
     <View>
-      <Text>Home</Text>
-      <Navbar pr></Navbar>
+      <Text>Feed</Text>
     </View>
   )
 }
 
-export default Home
+export default Feed
 
 const styles = StyleSheet.create({})
