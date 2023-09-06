@@ -56,16 +56,16 @@ const AddSchedule = () => {
         // PushNotification.createChannel(
         //     {
         //       channelId: 'my-channel-id', // Replace with your channel ID
-        //       channelName: 'My Channel',
-        //       channelDescription: 'A channel to categorize my notifications',
-        //     },
-        //     (created) => console.log(`Channel created: ${created}`)
-        //   );
-        PushNotification.localNotificationSchedule({
-          message: `Take ${pillName} at ${notificationDate.toLocaleTimeString()}`,
-          date: notificationDate,
-          // Add other notification properties as needed
-        });
+        //       channelName: 'My Channel',})
+        // //       channelDescription: 'A channel to categorize my notifications',
+        // //     },
+        // //     (created) => console.log(`Channel created: ${created}`)
+        // //   );
+        // PushNotification.localNotification({
+        //   message: `Take ${pillName} at ${notificationDate.toLocaleTimeString()}`,
+        //   date: notificationDate,
+        //   // Add other notification properties as needed
+        // });
       };
     
 
