@@ -1,21 +1,20 @@
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
 
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-
-import SignUp from './screens/SignUp'
-import Login from './screens/Login'
+import SignUp from './screens/SignUp';
+import Login from './screens/Login';
 import Home from './screens/Home';
 import TabNav from './routes/TabNav';
 import NavBar from './components/NavBar';
 import Feed from './screens/Feed';
 import Schudle from './screens/Schudle';
 import AddSchedule from './screens/AddSchedule';
+import BottomNavCenter from './Navigations/BottomNavCenter';
 
 const App = () => {
-
-  const Stack = createStackNavigator();
+  // const Stack = createStackNavigator();
   return (
     // <NavigationContainer>
     // <Stack.Navigator>
@@ -35,10 +34,23 @@ const App = () => {
     // </Stack.Navigator>
     // </NavigationContainer>
     // <Schudle></Schudle>
-    <AddSchedule></AddSchedule>
-  )
-}
+    // <AddSchedule></AddSchedule>
+    // <Home/>
+    <View style={styles.container}>
+      <NavigationContainer>
+        <BottomNavCenter />
+      </NavigationContainer>
+    </View>
+  );
+};
 
-export default App
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    
+    
+  }
+});
+
+export default App;

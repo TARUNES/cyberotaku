@@ -1,5 +1,6 @@
 package com.cyberotaku;
 
+import com.oblador.vectoricons.VectorIconsPackage;
 import android.app.Application;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
           return packages;
+          // packages.add(new VectorIconsPackage());
         }
 
         @Override
@@ -47,6 +49,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public ReactNativeHost getReactNativeHost() {
     return mReactNativeHost;
+    
   }
 
   @Override
