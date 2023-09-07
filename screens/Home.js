@@ -6,7 +6,7 @@ const Home = ({navigation}) => {
   return (
     <View>
       <Text>Home</Text>
-      <Navbar ></Navbar>
+      <Navbar pr></Navbar>
     </View>
   )
 }
