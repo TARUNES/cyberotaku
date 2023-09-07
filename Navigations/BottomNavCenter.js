@@ -63,6 +63,10 @@ export default BottomNavCenter;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: '5%',
+    // bottom:'100%',
+    // marginBottom: '5%',
+    // width:'100%',
+    borderRadius: 50, // Add this line to set the border radius
+    overflow: 'hidden',
   },
 });
