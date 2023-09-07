@@ -35,8 +35,8 @@ const App = () => {
     // </Stack.Navigator>
     // </NavigationContainer>
     // <Schudle></Schudle>
-    <Feed></Feed>
-    // <AddSchedule></AddSchedule>
+    // <Feed></Feed>
+    <AddSchedule></AddSchedule>
   )
 }
 

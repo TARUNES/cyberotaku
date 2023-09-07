@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, ToastAndroid } from 'react-native';
 import CheckBox from 'react-native-check-box';
 import DatePicker from 'react-native-date-picker';
-import PushNotification from 'react-native-push-notification';
+import PushNotification from "react-native-push-notification";
 
 import { firebase } from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -19,8 +19,58 @@ const AddSchedule = () => {
     const [date, setDate] = useState(new Date());
     const [openDate, setDateOpen] = useState(false);
 
-    const DbPill = () => {
-        const userDocument = firestore().collection('Users').doc('ABC');
+    useEffect(() => {
+        // Initialize PushNotification in the useEffect
+        PushNotification.configure({
+            // (optional) Called when Token is generated (iOS and Android)
+            onRegister: function (token) {
+                console.log("TOKEN:", token);
+            },
+
+            // (required) Called when a remote is received or opened, or local notification is opened
+            onNotification: function (notification) {
+                console.log("NOTIFICATION:", notification);
+
+                // process the notification
+
+                // (required) Called when a remote is received or opened, or local notification is opened
+                notification.finish(PushNotificationIOS.FetchResult.NoData);
+            },
+
+            // (optional) Called when Registered Action is pressed and invokeApp is false, if true onNotification will be called (Android)
+            onAction: function (notification) {
+                console.log("ACTION:", notification.action);
+                console.log("NOTIFICATION:", notification);
+
+                // process the action
+            },
+            onRegistrationError: function (err) {
+                console.error(err.message, err);
+            },
+            permissions: {
+                alert: true,
+                badge: true,
+                sound: true,
+            },
+
+            popInitialNotification: true,
+
+            requestPermissions: true,
+        });
+    }, []);
+
+    const noti = (date,pill) => {
+        // console.log("ithule onum perchana ila bro");
+        PushNotification.createChannel({
+            channelId: 'hui',
+            channelName: 'My Channel',
+        });
+
+        PushNotification.localNotificationSchedule({
+            channelId: 'hui',
+            message: `Take ${pill} at ${date.toLocaleTimeString()}`,
+            date: new Date(Date.now() + 5 * 1000),
+        });
     }
 
     const handleAddButtonPress = () => {
@@ -48,91 +98,78 @@ const AddSchedule = () => {
             .then(() => {
                 console.log('User added!');
                 ToastAndroid.show('Schedule Set!', ToastAndroid.SHORT);
-                scheduleNotification(date, pillname);
+                noti(date, pillname);
             });
-        
+
     }
-    const scheduleNotification = (notificationDate, pillName) => {
-        // PushNotification.createChannel(
-        //     {
-        //       channelId: 'my-channel-id', // Replace with your channel ID
-        //       channelName: 'My Channel',})
-        // //       channelDescription: 'A channel to categorize my notifications',
-        // //     },
-        // //     (created) => console.log(`Channel created: ${created}`)
-        // //   );
-        // PushNotification.localNotification({
-        //   message: `Take ${pillName} at ${notificationDate.toLocaleTimeString()}`,
-        //   date: notificationDate,
-        //   // Add other notification properties as needed
-        // });
-      };
-    
 
 
-return (
-    <View style={styles.container}>
-        <Text>AddSchedule</Text>
-        <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Pill Name:</Text>
-            <TextInput style={styles.input} onChangeText={newText => setPillname(newText)}></TextInput>
-        </View>
-        <View style={styles.checkboxContainer}>
-            <CheckBox
-                style={styles.checkbox}
-                onClick={() => {
-                    isMChecked(!MChecked);
+
+
+    return (
+        <View style={styles.container}>
+            <Text>AddSchedule</Text>
+            <View style={styles.inputContainer}>
+                <Text style={styles.inputLabel}>Pill Name:</Text>
+                <TextInput style={styles.input} onChangeText={newText => setPillname(newText)}></TextInput>
+            </View>
+            <View style={styles.checkboxContainer}>
+                <CheckBox
+                    style={styles.checkbox}
+                    onClick={() => {
+                        isMChecked(!MChecked);
+                    }}
+                    isChecked={MChecked}
+                    rightText={"Morning"}
+                    rightTextStyle={styles.checkboxText}
+                />
+                <CheckBox
+                    style={styles.checkbox}
+                    onClick={() => {
+                        isEChecked(!EChecked);
+                    }}
+                    isChecked={EChecked}
+                    rightText={"Evening"}
+                    rightTextStyle={styles.checkboxText}
+                />
+                <CheckBox
+                    style={styles.checkbox}
+                    onClick={() => {
+                        isNChecked(!NChecked);
+                    }}
+                    isChecked={NChecked}
+                    rightText={"Night"}
+                    rightTextStyle={styles.checkboxText}
+                />
+            </View>
+            <View style={styles.datepicker}>
+                <Text style={styles.dateLabel}>Intake Duration</Text>
+                <TouchableOpacity onPress={() => setDateOpen(true)} style={styles.dateButton}>
+                    <Text style={styles.dateButtonText}>{date ? date.toDateString() : 'Set'}</Text>
+                </TouchableOpacity>
+            </View>
+            <DatePicker
+                modal
+                mode="date"
+                open={openDate}
+                date={date}
+                is24hourSource={true}
+                onConfirm={(selectedDate) => {
+                    setDateOpen(false);
+                    setDate(selectedDate);
+                    console.log(selectedDate);
                 }}
-                isChecked={MChecked}
-                rightText={"Morning"}
-                rightTextStyle={styles.checkboxText}
-            />
-            <CheckBox
-                style={styles.checkbox}
-                onClick={() => {
-                    isEChecked(!EChecked);
+                onCancel={() => {
+                    setDateOpen(false);
                 }}
-                isChecked={EChecked}
-                rightText={"Evening"}
-                rightTextStyle={styles.checkboxText}
             />
-            <CheckBox
-                style={styles.checkbox}
-                onClick={() => {
-                    isNChecked(!NChecked);
-                }}
-                isChecked={NChecked}
-                rightText={"Night"}
-                rightTextStyle={styles.checkboxText}
-            />
-        </View>
-        <View style={styles.datepicker}>
-            <Text style={styles.dateLabel}>Intake Duration</Text>
-            <TouchableOpacity onPress={() => setDateOpen(true)} style={styles.dateButton}>
-                <Text style={styles.dateButtonText}>{date ? date.toDateString() : 'Set'}</Text>
+            <TouchableOpacity style={styles.addButton} onPress={handleAddButtonPress}>
+                <Text style={styles.addButtonText}>Add</Text>
             </TouchableOpacity>
         </View>
-        <DatePicker
-            modal
-            mode="date"
-            open={openDate}
-            date={date}
-            is24hourSource={true}
-            onConfirm={(selectedDate) => {
-                setDateOpen(false);
-                setDate(selectedDate);
-                console.log(selectedDate);
-            }}
-            onCancel={() => {
-                setDateOpen(false);
-            }}
-        />
-        <TouchableOpacity style={styles.addButton} onPress={handleAddButtonPress}>
-            <Text style={styles.addButtonText}>Add</Text>
-        </TouchableOpacity>
-    </View>
-);}
-        
+    );
+}
+
 const styles = StyleSheet.create({
     container: {
         height: '100%',
