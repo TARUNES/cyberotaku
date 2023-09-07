@@ -34,6 +34,7 @@ const App = () => {
     // </Stack.Navigator>
     // </NavigationContainer>
     // <Schudle></Schudle>
+<<<<<<< HEAD
     // <AddSchedule></AddSchedule>
     // <Home/>
     <View style={styles.container}>
@@ -43,6 +44,12 @@ const App = () => {
     </View>
   );
 };
+=======
+    <Feed></Feed>
+    // <AddSchedule></AddSchedule>
+  )
+}
+>>>>>>> 7b1ee04fc9f4c164752fbec925e70c952c635591
 
 
 const styles = StyleSheet.create({

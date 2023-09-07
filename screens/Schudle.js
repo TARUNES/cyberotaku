@@ -6,7 +6,7 @@ const Schudle = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.TopBar}>
         <Text style={{fontSize:30,color:'black'}}>Pill Schedule</Text>
-        <TouchableOpacity onPress={navigation.navigate('AddSchedule')}>
+        <TouchableOpacity onPress={()=>{}}>
         <Text style={{fontSize:30,color:'black'}}>+</Text>
         </TouchableOpacity>
 

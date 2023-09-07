@@ -21,6 +21,7 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+<<<<<<< HEAD
       </activity>
       
 
@@ -72,5 +73,8 @@
         </service>
 
 
+=======
+      </activity>   
+>>>>>>> 7b1ee04fc9f4c164752fbec925e70c952c635591
     </application>
 </manifest>
