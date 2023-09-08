@@ -14,6 +14,7 @@ import Schudle from './screens/Schudle';
 import AddSchedule from './screens/AddSchedule';
 import AddMedRecord from './screens/AddMedRecord';
 import UploadFileScreen from './screens/UploadFile';
+import DrugCheck from './screens/DrugCheck';
 
 const App = () => {
 
@@ -40,7 +41,8 @@ const App = () => {
     // <Feed></Feed>
     // <AddSchedule></AddSchedule>
     // <AddMedRecord></AddMedRecord>.
-    <UploadFileScreen></UploadFileScreen>
+    // <UploadFileScreen></UploadFileScreen>
+    <DrugCheck></DrugCheck>
     // <SignUp></SignUp>
   )
 }
