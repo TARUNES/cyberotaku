@@ -12,6 +12,8 @@ import NavBar from './components/NavBar';
 import Feed from './screens/Feed';
 import Schudle from './screens/Schudle';
 import AddSchedule from './screens/AddSchedule';
+import AddMedRecord from './screens/AddMedRecord';
+import UploadFileScreen from './screens/UploadFile';
 
 const App = () => {
 
@@ -36,7 +38,10 @@ const App = () => {
     // </NavigationContainer>
     // <Schudle></Schudle>
     // <Feed></Feed>
-    <AddSchedule></AddSchedule>
+    // <AddSchedule></AddSchedule>
+    // <AddMedRecord></AddMedRecord>.
+    <UploadFileScreen></UploadFileScreen>
+    // <SignUp></SignUp>
   )
 }
 

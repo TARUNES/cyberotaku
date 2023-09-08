@@ -39,7 +39,7 @@ const SignUp = ({navigation}) => {
             storeData(response.user.uid);
           Alert.alert('Success ✅', 'Account created successfully');
         }
-        navigation.navigate('Home');
+        // navigation.navigate('Home');
       } else {
         Alert.alert('Check Email');
       }
