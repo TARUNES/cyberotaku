@@ -37,7 +37,7 @@ const Login = ({navigation}) => {
           password,
         );
         if (response && response.user) {
-          Alert.alert('Success ✅', 'Authenticated successfully');
+          // Alert.alert('Success ✅', 'Authenticated successfully');
           storeData('true');
         }
         navigation.navigate('HomeTabs');

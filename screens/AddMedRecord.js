@@ -6,7 +6,7 @@ import storage from '@react-native-firebase/storage';
 import { firebase } from '@react-native-firebase/auth';
 
 
-const AddMedRecord = () => {
+const AddMedRecord = ({navigation}) => {
     const [Desp, setDesp] = useState('');
     const [selectedImage, setSelectedImage] = useState('');
     const currentUser = firebase.auth().currentUser.uid;
@@ -22,6 +22,7 @@ const AddMedRecord = () => {
             try {
                 await reference.putFile(imageUri);
                 console.log('Image uploaded successfully.');
+                navigation.goBack()
             } catch (error) {
                 console.error('Error uploading image:', error);
             }

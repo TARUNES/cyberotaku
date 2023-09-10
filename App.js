@@ -111,7 +111,7 @@ function HomeTabs() {
       <Tab.Screen name="home" component={Home} />
       <Tab.Screen name="feed" component={Feed} />
       <Tab.Screen name="medRecords" component={MedRecords} />
-      <Tab.Screen name="profile" component={AddMedRecord} />
+      <Tab.Screen name="profile" component={Profile} />
     </Tab.Navigator>
   );
 }
@@ -127,6 +127,10 @@ const App = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Feed" component={Feed} />
         <Stack.Screen name="Sceudle" component={Schudle} />
+        <Stack.Screen name="AddMedRecord" component={AddMedRecord} />
+        <Stack.Screen name="MedRecords" component={MedRecords} />
+
+
       </Stack.Navigator>
     </NavigationContainer>
   );
