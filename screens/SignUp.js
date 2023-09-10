@@ -114,7 +114,7 @@ const SignUp = ({navigation}) => {
       </TouchableOpacity>
 
       <View style={{flexDirection: 'row', marginTop: 5}}>
-        <TouchableOpacity onPress={() => navigation.navigate('FitLogin')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Text
             style={{
               textDecorationLine: 'underline',

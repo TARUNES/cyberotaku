@@ -16,7 +16,7 @@ const AddMedRecord = () => {
             const imageUri = selectedImage;
 
             const userId = currentUser;
-            const imageName = `${userId}_${new Date().getTime()}.jpg`;
+            const imageName = `${Desp}.jpg`;
             const reference = storage().ref(`${userId}/${imageName}`);
 
             try {
