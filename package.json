@@ -29,6 +29,7 @@
     "react-native-check-box": "^2.1.7",
     "react-native-date-picker": "^4.2.14",
     "react-native-document-picker": "^9.0.1",
+    "react-native-fast-image": "^8.6.3",
     "react-native-gesture-handler": "^2.12.1",
     "react-native-image-picker": "^7.0.0",
     "react-native-push-notification": "^8.1.1",

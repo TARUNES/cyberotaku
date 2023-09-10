@@ -111,7 +111,7 @@ function HomeTabs() {
       <Tab.Screen name="home" component={Home} />
       <Tab.Screen name="feed" component={Feed} />
       <Tab.Screen name="medRecords" component={MedRecords} />
-      <Tab.Screen name="profile" component={Profile} />
+      <Tab.Screen name="profile" component={AddMedRecord} />
     </Tab.Navigator>
   );
 }
@@ -120,7 +120,7 @@ const App = () => {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={'HomeTabs'} screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName={'Login'} screenOptions={{ headerShown: false }}>
         <Stack.Screen name="HomeTabs" component={HomeTabs} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="SignUp" component={SignUp} />

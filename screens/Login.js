@@ -40,7 +40,7 @@ const Login = ({navigation}) => {
           Alert.alert('Success ✅', 'Authenticated successfully');
           storeData('true');
         }
-        navigation.navigate('Home');
+        navigation.navigate('HomeTabs');
       } else {
         Alert.alert('Check', 'No inputs');
       }
@@ -117,7 +117,7 @@ const Login = ({navigation}) => {
 
       <View style={{flexDirection: 'row', marginTop: 5}}>
         <Text style={{fontWeight: '400', color: 'black'}}>Not member yet?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('FitSignup')}>
+        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
           <Text
             style={{
               textDecorationLine: 'underline',
