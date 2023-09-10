@@ -1,52 +1,137 @@
-
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Feather';
+import IconI from 'react-native-vector-icons/Ionicons';
 
-import SignUp from './screens/SignUp'
-import Login from './screens/Login'
-import Home from './screens/Home';
-import TabNav from './routes/TabNav';
-import NavBar from './components/NavBar';
-import Feed from './screens/Feed';
-import Schudle from './screens/Schudle';
-import AddSchedule from './screens/AddSchedule';
+import SignUp from './screens/SignUp';
+import Login from './screens/Login';
 import AddMedRecord from './screens/AddMedRecord';
-import UploadFileScreen from './screens/UploadFile';
+import AddSchedule from './screens/AddSchedule';
 import DrugCheck from './screens/DrugCheck';
+import Feed from './screens/Feed';
+import Home from './screens/Home';
+import Schudle from './screens/Schudle';
+import UploadFile from './screens/UploadFile';
+import MedRecords from './screens/MedRecords';
+import Profile from './screens/Profile';
+import TabBar from './navigation/TabBar';
 
-const App = () => {
+const Tab = createBottomTabNavigator();
 
-  const Stack = createStackNavigator();
+function HomeTabs() {
   return (
-    // <NavigationContainer>
-    // <Stack.Navigator>
-    //   <Stack.Screen name="Home" component={Home} />
-    //   <Stack.Screen name="SignUp" component={SignUp} />
-    //   <Stack.Screen name="Login" component={Login} />
-    //   <Stack.Screen name="Nav" component={NavBar} />
-    //   <Stack.Screen name="Feed" component={Feed} />
-    //   <Stack.Screen name="Sceudle" component={Schudle} />
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerShown:false,
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          position: 'absolute',
+          bottom: 25,
+          left: 20,
+          right: 20,
+          elevation: 0,
+          backgroundColor: '#ffff',
+          borderRadius: 15,
+          height: 90,
+          shadowColor: '#7F5DF0',
+          shadowOffset: {
+            width: 0,
+            height: 10,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.5,
+          elevation: 5,
+        },
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          let label;
 
-    //   {/* <Stack.Screen name="Settings" component={Settings} /> */}
-    //   <Stack.Screen
-    //       name="TabNav"
-    //       component={TabNav}
-    //       options={{headerShown: false}}
-    //     />
-    // </Stack.Navigator>
-    // </NavigationContainer>
-    // <Schudle></Schudle>
-    // <Feed></Feed>
-    // <AddSchedule></AddSchedule>
-    // <AddMedRecord></AddMedRecord>.
-    // <UploadFileScreen></UploadFileScreen>
-    <DrugCheck></DrugCheck>
-    // <SignUp></SignUp>
-  )
+          if (route.name === 'home') {
+            iconName = focused ? 'home' : 'home';
+            label = 'Home';
+          } else if (route.name === 'feed') {
+            iconName = focused ? 'newspaper' : 'newspaper-outline';
+            label = 'Feed';
+          } else if (route.name === 'medRecords') {
+            iconName = focused ? 'document-text' : 'document-text-outline';
+            label = 'Records';
+          } else if (route.name === 'profile') {
+            iconName = focused ? 'person' : 'person-outline';
+            label = 'Profile';
+          }
+
+          let iconComponent;
+
+          if (route.name === 'home') {
+            iconComponent = (
+              <Icon
+                name={iconName}
+                size={size}
+                color={focused ? '#9583FF' : 'black'}
+              />
+            );
+          } else if (route.name === 'feed') {
+            iconComponent = (
+              <IconI
+                name={iconName}
+                size={size}
+                color={focused ? '#9583FF' : 'black'}
+              />
+            );
+          } else if (route.name === 'medRecords') {
+            iconComponent = (
+              <IconI
+                name={iconName}
+                size={size}
+                color={focused ? '#9583FF' : 'black'}
+              />
+            );
+          } else if (route.name === 'profile') {
+            iconComponent = (
+              <IconI
+                name={iconName}
+                size={size}
+                color={focused ? '#9583FF' : 'black'}
+              />
+            );
+          }
+
+          return (
+            <View style={{ alignItems: 'center' }}>
+              {iconComponent}
+              <Text style={{ color: focused ? '#9583FF' : 'black' }}>{label}</Text>
+            </View>
+          );
+        },
+      })}
+    >
+      <Tab.Screen name="home" component={Home} />
+      <Tab.Screen name="feed" component={Feed} />
+      <Tab.Screen name="medRecords" component={MedRecords} />
+      <Tab.Screen name="profile" component={Profile} />
+    </Tab.Navigator>
+  );
 }
 
-export default App
+const App = () => {
+  const Stack = createStackNavigator();
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName={'HomeTabs'} screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="HomeTabs" component={HomeTabs} />
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Feed" component={Feed} />
+        <Stack.Screen name="Sceudle" component={Schudle} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 
-const styles = StyleSheet.create({})
+export default App;
+
+const styles = StyleSheet.create({});
