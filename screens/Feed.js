@@ -43,12 +43,12 @@ const Feed = () => {
       setRefreshing(false);
     });
   };
-
+  // rgba(186, 178, 235,0.4)
   return (
-    <View style={{ height: height, padding: 10, backgroundColor: 'rgba(186, 178, 235,0.4)' }}>
+    <View style={{ height: height, padding: 20, backgroundColor: 'white' }}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Text style={styles.header}>Health News</Text>
-        <Icon name="stethoscope" size={30} color="black" />
+        <Text style={styles.header}>Health Feeds</Text>
+        <Icon name="stethoscope" size={25} color="black" />
       </View>
       {isLoading ? (
         <View style={styles.loadingContainer}>
@@ -58,13 +58,13 @@ const Feed = () => {
         <FlatList
           data={newsData}
           renderItem={({ item }) => (
-            <View style={{ marginBottom: 15, backgroundColor: '#efedf5', alignItems: 'center', borderRadius: 10 }}>
+            <View style={{ marginBottom: 20, alignItems: 'center', borderRadius: 10,borderWidth:0.3, }}>
               {item.urlToImage && (
                 <View style={{ paddingTop: 10, paddingHorizontal: 5 }}>
                   {/* <Text>{item.source.name}</Text> */}
                   <Image source={{ uri: item.urlToImage }} style={{ height: 200, resizeMode: 'cover' }} />
                   <View style={{ marginTop: 5, marginBottom: 5 }}>
-                    <Text style={{ textAlign: 'justify', color: '#171a17', fontSize: 17, fontWeight: 500 }}>{item.title}</Text>
+                    <Text style={{ textAlign: 'justify', color: '#171a17', fontSize: 17, fontWeight: 400 }}>{item.title}</Text>
                   </View>
                   <View style={{ marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Text style={{ color: 'grey' }}>{item.source.name}</Text>
@@ -89,8 +89,8 @@ export default Feed;
 
 const styles = StyleSheet.create({
   header: {
-    fontSize: 35,
-    fontWeight: '700',
+    fontSize: 25,
+    fontWeight: '500',
     color: 'black',
     marginBottom: 10,
     marginRight: 10

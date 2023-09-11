@@ -1,10 +1,13 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Feather';
 import IconI from 'react-native-vector-icons/Ionicons';
+import IconF from 'react-native-vector-icons/FontAwesome6';
+
 
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
@@ -18,6 +21,13 @@ import UploadFile from './screens/UploadFile';
 import MedRecords from './screens/MedRecords';
 import Profile from './screens/Profile';
 import TabBar from './navigation/TabBar';
+import Age from './screens/Age';
+import Doctorlist from './screens/Doctorlist';
+import Height from './screens/Height';
+import Onboard from './screens/Onboard';
+import Weight from './screens/Weight';
+import Onboard1 from './screens/Onboard1';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -34,8 +44,8 @@ function HomeTabs() {
           right: 20,
           elevation: 0,
           backgroundColor: '#ffff',
-          borderRadius: 15,
-          height: 90,
+          borderRadius: 20,
+          height: 80,
           shadowColor: '#7F5DF0',
           shadowOffset: {
             width: 0,
@@ -55,9 +65,9 @@ function HomeTabs() {
           } else if (route.name === 'feed') {
             iconName = focused ? 'newspaper' : 'newspaper-outline';
             label = 'Feed';
-          } else if (route.name === 'medRecords') {
-            iconName = focused ? 'document-text' : 'document-text-outline';
-            label = 'Records';
+          } else if (route.name === 'Doctorlist') {
+            iconName = focused ? 'user-doctor' : 'user-doctor';
+            label = 'Doctor';
           } else if (route.name === 'profile') {
             iconName = focused ? 'person' : 'person-outline';
             label = 'Profile';
@@ -69,7 +79,7 @@ function HomeTabs() {
             iconComponent = (
               <Icon
                 name={iconName}
-                size={size}
+                size={25}
                 color={focused ? '#9583FF' : 'black'}
               />
             );
@@ -77,15 +87,15 @@ function HomeTabs() {
             iconComponent = (
               <IconI
                 name={iconName}
-                size={size}
+                size={25}
                 color={focused ? '#9583FF' : 'black'}
               />
             );
-          } else if (route.name === 'medRecords') {
+          } else if (route.name === 'Doctorlist') {
             iconComponent = (
-              <IconI
+              <IconF
                 name={iconName}
-                size={size}
+                size={25}
                 color={focused ? '#9583FF' : 'black'}
               />
             );
@@ -93,7 +103,7 @@ function HomeTabs() {
             iconComponent = (
               <IconI
                 name={iconName}
-                size={size}
+                size={25}
                 color={focused ? '#9583FF' : 'black'}
               />
             );
@@ -109,18 +119,31 @@ function HomeTabs() {
       })}
     >
       <Tab.Screen name="home" component={Home} />
+      <Tab.Screen name="Doctorlist" component={Doctorlist} />
       <Tab.Screen name="feed" component={Feed} />
-      <Tab.Screen name="medRecords" component={MedRecords} />
-      <Tab.Screen name="profile" component={Schudle} />
+      <Tab.Screen name="profile" component={MedRecords} />
     </Tab.Navigator>
   );
 }
 
 const App = () => {
   const Stack = createStackNavigator();
+  const [showOnboarding, setShowOnboarding] = useState(false);
+
+  useEffect(() => {
+    // Check if the user has seen onboarding before
+    AsyncStorage.getItem('hasSeenOnboarding').then((value) => {
+      if (value === null) {
+        // If it's the first time, set the flag and show onboarding
+        AsyncStorage.setItem('hasSeenOnboarding', 'true');
+        setShowOnboarding(true);
+      }
+    });
+  }, []);
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={'Login'} screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName={'Onboard'} screenOptions={{ headerShown: false }}>
         <Stack.Screen name="HomeTabs" component={HomeTabs} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="SignUp" component={SignUp} />
@@ -129,10 +152,24 @@ const App = () => {
         <Stack.Screen name="Sceudle" component={Schudle} />
         <Stack.Screen name="AddMedRecord" component={AddMedRecord} />
         <Stack.Screen name="MedRecords" component={MedRecords} />
-
-
+        <Stack.Screen name="DrugCheck" component={DrugCheck} />
+        <Stack.Screen name="Onboard" component={Onboard} />
+        <Stack.Screen name="Onboard1" component={Onboard1} />
+        <Stack.Screen name="Weight" component={Weight} />
+        <Stack.Screen name="Height" component={Height} />
       </Stack.Navigator>
     </NavigationContainer>
+    // <Home></Home>
+    // <DrugCheck></DrugCheck>
+    // <Age></Age>
+    // <Doctorlist></Doctorlist>
+    // <Height></Height>
+    // <Onboard></Onboard>
+    // <Onboard1></Onboard1>
+    // <Weight></Weight>
+    // <Login></Login>
+    // <SignUp></SignUp>
+
   );
 };
 
