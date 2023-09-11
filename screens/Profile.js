@@ -104,7 +104,7 @@ const Profile = (
           marginTop: '7%',
         }}>
         <View>
-          <Text style={{ fontSize: 19, fontWeight: '700' }}>Hi, Sriram</Text>
+          <Text style={{ fontSize: 19, fontWeight: '700' }}>Hi, Tarun</Text>
           {/* <Text style={{ fontSize: 13 }}>
             {nday} {ndate} {nmonth}
           </Text> */}
