@@ -79,17 +79,17 @@ const DrugCheck = () => {
                 <IconI name='search' color={'black'} size={16}></IconI>
             </TouchableOpacity>
 <ScrollView>
-            <Text style={{ fontSize: 20, color: 'black', fontWeight: '600' }}>Purpose:</Text>
+            <Text style={{ fontSize: 20, color: 'black', fontWeight: '800' }}>Purpose:</Text>
             {purpose.map((item, index) => (
-                <Text style={{ fontSize: 16, color: 'black', fontWeight: '400',marginBottom:10 }} key={index}>{item}</Text>
+                <Text style={{ fontSize: 15, color: '#0f0d0d', fontWeight: '400',marginBottom:10 }} key={index}>{item}</Text>
             ))}
-            <Text style={{ fontSize: 20, color: 'black', fontWeight: '600' }}>Indications and Usage:</Text>
+            <Text style={{ fontSize: 20, color: 'black', fontWeight: '800' }}>Indications and Usage:</Text>
             {indicationsAndUsage.map((item, index) => (
-                <Text style={{ fontSize: 16, color: 'black', fontWeight: '400',marginBottom:10 }} key={index}>{item}</Text>
+                <Text style={{ fontSize: 15, color: '#0f0d0d', fontWeight: '400',marginBottom:10 }} key={index}>{item}</Text>
             ))}
-            <Text style={{ fontSize: 20, color: 'black', fontWeight: '600' }}>Warnings:</Text>
+            <Text style={{ fontSize: 20, color: 'black', fontWeight: '800' }}>Warnings:</Text>
             {warnings.map((item, index) => (
-                <Text style={{ fontSize: 16, color: 'black', fontWeight: '400',marginBottom:10 }} key={index}>{item}</Text>
+                <Text style={{ fontSize: 15, color: '#0f0d0d', fontWeight: '400',marginBottom:10 }} key={index}>{item}</Text>
             ))}
             </ScrollView>
         </View>
