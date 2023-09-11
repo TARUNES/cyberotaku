@@ -11,6 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import React, { useState, useEffect } from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import SendSMS from 'react-native-sms';
 // emergency-share
 
 const Profile = (
@@ -18,6 +19,39 @@ const Profile = (
 ) => {
   // Accept the props as an object
 
+  const [mobileNumber, setMobileNumber] = useState('9999999999');
+  const [bodySMS, setBodySMS] = useState(
+    'Please Help',
+  );
+
+  const initiateSMS = () => {
+    // Check for perfect 10 digit length
+    if (mobileNumber.length != 10) {
+      alert('Please insert correct contact number');
+      return;
+    }
+
+    SendSMS.send(
+      {
+        // Message body
+        body: bodySMS,
+        // Recipients Number
+        recipients: [mobileNumber],
+        // An array of types 
+        // "completed" response when using android
+        successTypes: ['sent', 'queued'],
+      },
+      (completed, cancelled, error) => {
+        if (completed) {
+          console.log('SMS Sent Completed');
+        } else if (cancelled) {
+          console.log('SMS Sent Cancelled');
+        } else if (error) {
+          console.log('Some error occured');
+        }
+      },
+    );
+  };
 
   const props = {
     activeStrokeWidth: 10,
@@ -93,7 +127,7 @@ const Profile = (
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View
+        <TouchableOpacity onPress={initiateSMS}
           style={{
             height: '69%',
             width: '50%',
@@ -128,7 +162,7 @@ const Profile = (
             Weight {weight}KG
           </Text> */}
           
-        </View>
+        </TouchableOpacity>
 
         <TouchableOpacity onPress={() => { navigation.navigate('MedRecords') }}
           style={{
