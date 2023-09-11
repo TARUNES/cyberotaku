@@ -93,8 +93,8 @@ const AddSchedule = () => {
 
         const userDocument = firestore().collection('Users').doc(currentUser);
         firestore()
-            .collection('Users')
-            .doc(currentUser)
+            .collection(currentUser)
+            // .doc('currentUser')
             .add({
                 PillName: pillname,
                 MChecked: MChecked,

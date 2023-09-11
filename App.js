@@ -157,6 +157,8 @@ const App = () => {
         <Stack.Screen name="Onboard1" component={Onboard1} />
         <Stack.Screen name="Weight" component={Weight} />
         <Stack.Screen name="Height" component={Height} />
+        <Stack.Screen name="AddSchudle" component={AddSchedule} />
+
       </Stack.Navigator>
     </NavigationContainer>
     // <Home></Home>
