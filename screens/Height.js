@@ -3,14 +3,34 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'reac
 import Feather from 'react-native-vector-icons/Feather';
 import Toast from 'react-native-toast-message';
 
-const Height = () => {
+import { firebase } from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+const Height = ({navigation}) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (text) => {
     setInputValue(text);
-  };
+    const currentUser = firebase.auth().currentUser.uid;
+    if (currentUser) {
+        const userId = currentUser; // Get the user's ID
+        console.log('Current User ID:', userId); // Log the user's ID
+    } else {
+        console.log('User is not authenticated.');
+    }
 
-  
+    firestore().collection('Users').doc(currentUser).set(
+      {
+        height: inputValue,
+
+      },{merge: true},)
+    .then(() => {
+        console.log('Height added!');
+        navigation.navigate('Weight');
+    })
+    .catch((error) => {
+        console.error('Error adding height data: ', error);
+    });
+  }
   const handleNext=()=>{
 
   }  
@@ -43,7 +63,7 @@ const Height = () => {
       </View>
 
       <View style={styles.btn}>
-        <TouchableOpacity style={styles.button} onPress={handleNext}>
+        <TouchableOpacity style={styles.button} onPress={handleInputChange}>
           <Feather name="chevron-right" size={30} color="white" />
         </TouchableOpacity>
       </View>

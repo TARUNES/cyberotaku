@@ -83,7 +83,7 @@ const MedRecords = ({ navigation }) => {
   };
 
   return (
-    <View style={{ height: height, padding: 10, backgroundColor: 'rgba(186, 178, 235,0.4)' }}>
+    <View style={{ height: height, padding: 10 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
         <Text style={styles.header}>Medical Records</Text>
         <TouchableOpacity onPress={() => navigation.navigate('AddMedRecord')}>
@@ -94,25 +94,42 @@ const MedRecords = ({ navigation }) => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
+        // horizontal={true}
+        // contentContainerStyle={{ width: `${100 * 20}%` }}
+        showsHorizontalScrollIndicator={false}
+
       >
-        <View style={{ flexDirection: 'column' }}>
+        <View style={{ flexDirection: 'column', padding: 7 }}>
           {imageData.map((data, index) => (
-            <View style={{ height: 400, backgroundColor: '#efedf5', marginVertical: 10 }}>
+            <View style={{ backgroundColor: 'white', marginVertical: 10, borderRadius: 20, padding: 10,borderWidth:0.3,borderColor:'lightgrey' }}>
               <TouchableOpacity key={index} onPress={() => openImageModal(data.url)}>
-                <View style={{ paddingTop: 10, paddingHorizontal: 5 }}>
-                  <Image source={{ uri: data.url }} style={{ height: 300, resizeMode: 'cover' }} />
-                  <View style={{ marginBottom: 5, flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <Text style={{ color: 'black', fontWeight: '700', fontSize: 16 }}>
-                      Hospital: Apollo Hospital
-                    </Text>
-                    <Text style={{ color: 'black', fontWeight: '700' }}>
+                <View style={{ flexDirection: 'row' }}>
+                  <Image source={{ uri: data.url }} style={{ height: 100, width: 100, resizeMode: 'cover' }} />
+                  <View style={{ flexDirection: 'column', flex: 1, marginLeft: 8 }}>
+                    <View style={{ flexDirection: 'column' }}>
+                      <Text style={{ color: 'grey', fontWeight: '500', fontSize: 13, marginLeft: 5 }}>
+                        Hospital Name:
+                      </Text>
+                      <Text style={{ color: 'black', fontWeight: '700', fontSize: 18, marginLeft: 5 }}>
+                        {data.title}
+                      </Text>
+                    </View>
+                    <View style={{ flexDirection: 'column', marginTop: 5 }}>
+                      <Text style={{ color: 'grey', fontWeight: '500', fontSize: 13, marginLeft: 5 }}>
+                        Date:
+                      </Text>
+                      <Text style={{ color: 'black', fontWeight: '700', fontSize: 16, marginLeft: 5 }}>
+                        {data.creationTime.toDateString()}
+                      </Text>
+                    </View>
+                    {/* <Text style={{ color: 'black', fontWeight: '700' }}>
                       Date: {data.creationTime.toDateString()}
-                    </Text>
-                  </View>
-                  <View style={{ marginTop: 5, marginBottom: 5 }}>
+                    </Text> */}
+                    {/* <View style={{ marginTop: 5, marginBottom: 5 }}>
                     <Text style={{ textAlign: 'justify', color: '#171a17', fontSize: 15, fontWeight: 500 }}>
                       Description: {data.title}
                     </Text>
+                  </View> */}
                   </View>
                 </View>
               </TouchableOpacity>
@@ -141,7 +158,7 @@ export default MedRecords;
 const styles = StyleSheet.create({
   container: {},
   header: {
-    fontSize: 35,
+    fontSize: 25,
     fontWeight: '700',
     color: 'black',
   },

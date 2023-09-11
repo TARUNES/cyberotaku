@@ -2,12 +2,37 @@ import {StyleSheet, Text, View, Image, TextInput,TouchableOpacity} from 'react-n
 import React, { useState } from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 
+import { firebase } from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+
 import Toast from 'react-native-toast-message'; // Import the toast library
-const Weight = () => {
+const Weight = ({navigation}) => {
   const [inputValue, setInputValue] = useState('');
-  const handleInputChange=(text)=>{
+
+  const handleInputChange = (text) => {
     setInputValue(text);
-  }  
+    const currentUser = firebase.auth().currentUser.uid;
+    if (currentUser) {
+        const userId = currentUser; // Get the user's ID
+        console.log('Current User ID:', userId); // Log the user's ID
+    } else {
+        console.log('User is not authenticated.');
+    }
+
+    firestore().collection('Users').doc(currentUser).set(
+      {
+        Weight: inputValue,
+
+      },{merge: true},)
+    .then(() => {
+        console.log('Weight added!');
+        navigation.navigate('HomeTabs');
+    })
+    .catch((error) => {
+        console.error('Error adding height data: ', error);
+    });
+  }
+
   const handleNext=()=>{
 
   }  

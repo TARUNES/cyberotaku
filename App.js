@@ -121,7 +121,7 @@ function HomeTabs() {
       <Tab.Screen name="home" component={Home} />
       <Tab.Screen name="Doctorlist" component={Doctorlist} />
       <Tab.Screen name="feed" component={Feed} />
-      <Tab.Screen name="profile" component={MedRecords} />
+      <Tab.Screen name="profile" component={Profile} />
     </Tab.Navigator>
   );
 }

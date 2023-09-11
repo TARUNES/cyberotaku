@@ -161,7 +161,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Login = () => {
+const SignUp = ({navigation}) => {
   const handleInputChange = () => {};
 
   const [isChecked, setIsChecked] = useState(false);
@@ -186,7 +186,7 @@ const Login = () => {
             storeData(response.user.uid);
           Alert.alert('Success ✅', 'Account created successfully');
         }
-        navigation.navigate('HomeTabs');
+        navigation.navigate('Height');
       } else {
         Alert.alert('Check Email');
       }
@@ -198,6 +198,7 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
+      {/* <Image style={{resizeMode:'contain',height:'30%',width:'100%',marginLeft:'25%', marginTop:'5%'}} source={require('../Assets/Signin.png')}/> */}
       <Text style={styles.uptxt1}>Get Started</Text>
       <Text style={styles.uptxt2}>By creating a free account.</Text>
       <View style={{flex: 1, alignItems: 'center'}}>
@@ -279,7 +280,7 @@ const Login = () => {
         </TouchableOpacity>
         <View style={{flexDirection: 'row', marginTop: '5%'}}>
           <Text style={{marginLeft: '15%'}}> Already a member?? </Text>
-          <TouchableOpacity >
+          <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
             <Text style={{marginRight: '15%', color: '#A294F6'}}>
               Login now
             </Text>
@@ -290,7 +291,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
 
 const styles = StyleSheet.create({
   container: {

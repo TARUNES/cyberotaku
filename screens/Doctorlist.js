@@ -2,6 +2,8 @@ import {StyleSheet, Text, View, FlatList,Dimensions} from 'react-native';
 import React from 'react';
 import Doctorcomponent from '../components/Doctorcomponent';
 import doctorsData from '../Doctordata/DoctorData';
+import { firebase } from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const Doctorlist = () => {
   const { height, width } = Dimensions.get('window');

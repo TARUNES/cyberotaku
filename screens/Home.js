@@ -1,8 +1,12 @@
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import CircularProgressBase from 'react-native-circular-progress-indicator';
 import { format } from 'date-fns';
+
+import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore';
+
 const { height, width } = Dimensions.get('window');
 
 const props = {
@@ -13,8 +17,47 @@ const props = {
 
 const Home = ({ navigation }) => {
 
+  const [height, setHeight] = useState('')
+  const [weight, setWeight] = useState('')
+  const [bmi, setBMI] = useState(null);
+  const [obesity, setObesity] = useState(null);
+
+
+  const getData = async () => {
+    const uid = auth().currentUser.uid
+    firestore().collection("Users").doc(uid).onSnapshot((snapshot) => {
+      console.log(snapshot.data())
+      const height = snapshot.data().height
+      const weight = snapshot.data().Weight
+
+      setHeight(height)
+      setWeight(weight)
+      if (height && weight) {
+        const heightInMeters = height / 100; // Convert height to meters
+        const bmiValue = weight / (heightInMeters * heightInMeters);
+        setBMI(bmiValue.toFixed(2)); // Round BMI to 2 decimal places
+        const getObesityLevel = (bmi) => {
+          if (bmi < 18.5) {
+            return 'Underweight';
+          } else if (bmi >= 18.5 && bmi < 24.9) {
+            return 'Normal Weight';
+          } else if (bmi >= 25 && bmi < 29.9) {
+            return 'Overweight';
+          } else {
+            return 'Obese';
+          }
+        };
+        
+        setObesity(getObesityLevel(bmi));
+      }
+    })
+  }
+
+  useEffect(() => {
+    getData()
+  }, []);
+
   const formatDate = (date) => {
-    // Format the date as "day Mon MMM"
     return format(date, 'd MMM yy');
   };
 
@@ -32,7 +75,7 @@ const Home = ({ navigation }) => {
         <Text style={{ color: 'black', fontSize: 18, fontWeight: '500' }}>Welcome Back</Text>
         <Text style={{ color: 'black', fontSize: 23, fontWeight: '800' }}>Hinata</Text>
       </View>
-      <View style={{marginBottom:10}}>
+      <View style={{ marginBottom: 10 }}>
         <Text style={{ color: 'black', fontSize: 25, fontWeight: '700' }}>Health Overview</Text>
         <Text style={{ color: 'black', fontSize: 16, fontWeight: '300' }}>your Daily Health Statistics</Text>
       </View>
@@ -41,15 +84,15 @@ const Home = ({ navigation }) => {
           <View style={{ marginTop: 20 }}>
             <CircularProgressBase
               {...props}
-              value={89}
+              value={height}
               radius={70}
               activeStrokeColor={'#e84118'}
               inActiveStrokeColor={'#e84118'}
             >
             </CircularProgressBase>
           </View>
-          <Text style={{ marginTop: 10, fontSize: 20,color:'black' }}>Risk Level</Text>
-          <Text style={{ marginTop: 6, fontSize: 20, color: '#e84118', fontWeight: '700' }}>Extreme</Text>
+          <Text style={{ marginTop: 10, fontSize: 20, color: 'black' }}>Risk Level</Text>
+          <Text style={{ marginTop: 6, fontSize: 20, color: '#e84118', fontWeight: '700' }}>{obesity}</Text>
         </View>
 
         <View>
@@ -59,12 +102,12 @@ const Home = ({ navigation }) => {
           </View>
           <TouchableOpacity style={{ height: 160, width: 150, backgroundColor: 'rgba(186, 178, 235,0.4)', borderRadius: 20, alignItems: 'flex-start', padding: 20 }}>
             <Text style={{ fontSize: 23, fontWeight: '600', color: 'black', marginTop: 10 }}>BMI</Text>
-            <Text style={{ fontSize: 43, fontWeight: '800', color: 'black' }}>27.5</Text>
+            <Text style={{ fontSize: 43, fontWeight: '800', color: 'black' }}>{bmi}</Text>
           </TouchableOpacity>
         </View>
 
       </View>
-      <TouchableOpacity  style={{ height: 140, backgroundColor: 'rgba(186, 178, 235,0.4)', borderRadius: 20, alignItems: 'flex-start', padding: 20, marginTop: 20 }}>
+      <TouchableOpacity style={{ height: 140, backgroundColor: 'rgba(186, 178, 235,0.4)', borderRadius: 20, alignItems: 'flex-start', padding: 20, marginTop: 20 }}>
         <Text style={{ fontSize: 25, fontWeight: '600', color: 'black' }}>Pill Check?</Text>
         <Text style={{ fontSize: 16, fontWeight: '500', color: 'black', marginTop: 8 }}>Track medication effects and symptoms effortlessly for better health insights</Text>
 
@@ -77,9 +120,9 @@ const Home = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity style={{ height: 140, backgroundColor: 'rgba(186, 178, 235,0.4)', borderRadius: 20, alignItems: 'flex-start', padding: 20, marginTop: 20, width: 130 }}>
           <Text style={{ fontSize: 23, fontWeight: '600', color: 'black', marginTop: 10 }}>Water</Text>
-          <View style={{flexDirection:'row'}}>
-          <Text style={{ fontSize: 43, fontWeight: '800', color: 'black' }}>3</Text>
-          <Text style={{ fontSize: 23, fontWeight: '500', color: 'black',marginTop:19 }}> litres </Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{ fontSize: 43, fontWeight: '800', color: 'black' }}>3</Text>
+            <Text style={{ fontSize: 23, fontWeight: '500', color: 'black', marginTop: 19 }}> litres </Text>
           </View>
 
         </TouchableOpacity>

@@ -47,7 +47,7 @@ const AddMedRecord = ({navigation}) => {
     <View style={styles.container}>
         <Text style={{fontSize:30,fontWeight:'700',color:'black'}}>Add Your Record</Text>
      <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Description:</Text>
+                <Text style={styles.inputLabel}>Hospital Name:</Text>
                 <TextInput style={styles.input} onChangeText={newText => setDesp(newText)}></TextInput>
             </View>
     <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>

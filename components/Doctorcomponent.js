@@ -13,6 +13,8 @@ import Toast from 'react-native-toast-message';
 import DateButton from './Datebtn';
 import TimeSlotButton from './TimeSlotButton';
 
+import { firebase } from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 const Doctorcomponent = ({
   name,
   specialty,
@@ -32,6 +34,8 @@ const Doctorcomponent = ({
     useState(false);
   const [selectedButton, setSelectedButton] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+  const [selectedName,setSelectedName]=useState(null)
+  // setSelectedName(name)
 
   const handleButtonPress = dayOfWeek => {
     setSelectedButton(dayOfWeek);
@@ -53,6 +57,22 @@ const Doctorcomponent = ({
     setSelectedTimeSlot(timeSlot);
   };
   const ConfirmAppointment = () => {
+    setSelectedName(name)
+    const currentUser = firebase.auth().currentUser.uid;
+    if (currentUser) {
+        const userId = currentUser; // Get the user's ID
+        console.log('Current User ID:', userId); // Log the user's ID
+    } else {
+        console.log('User is not authenticated.');
+    }
+    firestore().collection('Doctor').doc(currentUser).set(
+      {
+        name:selectedName,
+        date: selectedButton,
+        timeslot: selectedTimeSlot
+
+      },{merge: true},).then(()=>console.log('Added Slot'))
+    console.log(selectedButton,selectedTimeSlot);
     Toast.show({
       type: 'success', // You can change the type to WARNING, ERROR, etc. if needed
       text1: 'Appointment Confirmed',
