@@ -14,7 +14,7 @@ const DrugCheck = () => {
 
     async function services() {
         try {
-            const response = await fetch(`https://api.fda.gov/drug/label.json?search=openfda.brand_name:dolo&limit=1`, {
+            const response = await fetch(`https://api.fda.gov/drug/label.json?search=openfda.brand_name:${pillname}&limit=1`, {
                 headers: {
                     'X-API-KEY': API_KEY
                 }
