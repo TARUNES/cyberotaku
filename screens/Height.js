@@ -57,13 +57,12 @@ const Height = ({navigation}) => {
           style={styles.mail}
           placeholder="Enter your Height"
           onChangeText={handleInputChange}
-          value={inputValue}
           keyboardType="numeric" // This restricts input to numbers and floats
         />
       </View>
 
       <View style={styles.btn}>
-        <TouchableOpacity style={styles.button} onPress={handleInputChange}>
+        <TouchableOpacity style={styles.button} onPress={()=>handleInputChange}>
           <Feather name="chevron-right" size={30} color="white" />
         </TouchableOpacity>
       </View>

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity ,ScrollView} from 'react-native'
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity ,ScrollView,Alert} from 'react-native'
 import React, { useState } from 'react'
 import { endpoint, API_KEY } from '../config/DrugConfig';
 
@@ -30,40 +30,31 @@ const DrugCheck = () => {
                     setWarnings(results.warnings || []);
                 } else {
                     console.error('No results found');
+                    Alert.alert('No results found');
                 }
             } else {
                 console.error('Error fetching data:', response.status);
+                Alert.alert('Error fetching data', `Status: ${response.status}`);
             }
         } catch (error) {
             console.error('Error fetching data:', error);
+            Alert.alert('Error fetching data', 'An error occurred while fetching data.');
         }
     }
 
     return (
-        // <View>
-        //     <Text>DrugCheck</Text>
-        //     <Button onPress={services} title='Fetch Data' />
-        // <Text>Purpose:</Text>
-        // {purpose.map((item, index) => (
-        //     <Text key={index}>{item}</Text>
-        // ))}
-        // <Text>Indications and Usage:</Text>
-        // {indicationsAndUsage.map((item, index) => (
-        //     <Text key={index}>{item}</Text>
-        // ))}
-        // <Text>Warnings:</Text>
-        // {warnings.map((item, index) => (
-        //     <Text key={index}>{item}</Text>
-        // ))}
-        // </View>
         <View style={styles.container}>
+            <View >
+        <Text style={{ fontSize: 25, color: 'black' }}>Check About Pill</Text>
+
+      </View>
             <View
                 style={{
                     flexDirection: 'row',
                     backgroundColor: 'white',
                     paddingLeft: 10,
                     borderRadius: 10,
-                    marginTop: 50,
+                    marginTop: 20,
                     height: 50,
                 }}>
                 <Icon name={'pill'} color={'#1f2120'} style={{ fontSize: 20, marginTop: 13 }} />
@@ -111,5 +102,5 @@ const styles = StyleSheet.create({
         color: 'black',
         backgroundColor: 'white',
         // width:'200'
-    },
+    }
 });

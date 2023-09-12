@@ -14,7 +14,7 @@ import firestore from '@react-native-firebase/firestore';
 
 
 
-const AddSchedule = () => {
+const AddSchedule = ({navigation}) => {
     const [pillname, setPillname] = useState('');
     const [intake, setIntake] = useState();
     const [no_of_days, setNoDays] = useState();
@@ -72,11 +72,11 @@ const AddSchedule = () => {
             channelName: 'My Channel',
         });
 
-        // PushNotification.localNotificationSchedule({
-        //     channelId: 'hui',
-        //     message: `Take ${pill} at ${date.toLocaleTimeString()}`,
-        //     date: new Date(Date.now() + 2 * 1000),
-        // });
+        PushNotification.localNotificationSchedule({
+            channelId: 'hui',
+            message: `Take ${pill} at ${date.toLocaleTimeString()}`,
+            date: new Date(Date.now() + 2 * 1000),
+        });
     }
 
     const handleAddButtonPress = () => {
@@ -107,6 +107,7 @@ const AddSchedule = () => {
                 console.log('User added!');
                 ToastAndroid.show('Schedule Set!', ToastAndroid.SHORT);
                 noti(date, pillname);
+                navigation.navigate('HomeTabs')
             });
 
         const notificationTimes = [];

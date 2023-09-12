@@ -22,7 +22,7 @@ const Onboard1 = ({navigation}) => {
               marginEnd:'10%',
               textAlign:'center'
             }}>
-            Assistant ready for You?
+            Get Started
           </Text>
           <Text
             style={{
@@ -32,7 +32,8 @@ const Onboard1 = ({navigation}) => {
               marginVertical: '10%',
               fontSize: 15,
               color: 'black',
-              textAlign:'center'
+              textAlign:'center',
+              fontWeight:"800"
             }}>
             Don't wait, schedule your appointment now and invest in your well-being
           </Text>

@@ -62,14 +62,14 @@ const Weight = ({navigation}) => {
           style={styles.mail}
           placeholder="Enter your Weight"
           onChangeText={handleInputChange}
-          value={Text}
+          // value={Text}
           keyboardType = 'numeric'
           
         />
       </View>
 
       
-        <TouchableOpacity style={styles.btn} onPress={handleNext}>
+        <TouchableOpacity style={styles.btn} onPress={()=>handleNext}>
         <Feather name="chevron-right" size={30} color="white" />
         </TouchableOpacity>
         <Toast/>

@@ -45,7 +45,7 @@ const Feed = () => {
   };
   // rgba(186, 178, 235,0.4)
   return (
-    <View style={{ height: height, padding: 20, backgroundColor: 'white' }}>
+    <View style={{ height: height, padding: 20, backgroundColor: '#F5F5F5' }}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Text style={styles.header}>Health Feeds</Text>
         <Icon name="stethoscope" size={25} color="black" />
@@ -58,7 +58,7 @@ const Feed = () => {
         <FlatList
           data={newsData}
           renderItem={({ item }) => (
-            <View style={{ marginBottom: 20, alignItems: 'center', borderRadius: 10,borderWidth:0.3, }}>
+            <View style={{ marginBottom: 20, alignItems: 'center', borderRadius: 10,borderWidth:0.3, backgroundColor:'rgba(220, 210, 247,0.6)'}}>
               {item.urlToImage && (
                 <View style={{ paddingTop: 10, paddingHorizontal: 5 }}>
                   {/* <Text>{item.source.name}</Text> */}

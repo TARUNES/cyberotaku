@@ -101,7 +101,7 @@ const MedRecords = ({ navigation }) => {
       >
         <View style={{ flexDirection: 'column', padding: 7 }}>
           {imageData.map((data, index) => (
-            <View style={{ backgroundColor: 'white', marginVertical: 10, borderRadius: 20, padding: 10,borderWidth:0.3,borderColor:'lightgrey' }}>
+            <View key={index}  style={{ backgroundColor: 'rgba(220, 210, 247,0.6)', marginVertical: 10, borderRadius: 20, padding: 10,borderWidth:0.3,borderColor:'lightgrey' }}>
               <TouchableOpacity key={index} onPress={() => openImageModal(data.url)}>
                 <View style={{ flexDirection: 'row' }}>
                   <Image source={{ uri: data.url }} style={{ height: 100, width: 100, resizeMode: 'cover' }} />
@@ -144,7 +144,7 @@ const MedRecords = ({ navigation }) => {
             onPress={closeImageModal}
             style={{ position: 'absolute', top: 20, right: 20, zIndex: 1 }}
           >
-            <Text style={{ color: 'white', fontSize: 18 }}>Close</Text>
+            <Text style={{ color: 'rgba(220, 210, 247,0.6)', fontSize: 18 }}>Close</Text>
           </TouchableOpacity>
           <Image source={{ uri: selectedImage }} style={{ flex: 1, resizeMode: 'contain' }} />
         </View>

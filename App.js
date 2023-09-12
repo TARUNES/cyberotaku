@@ -143,7 +143,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={'Onboard'} screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName={'Onboard1'} screenOptions={{ headerShown: false }}>
         <Stack.Screen name="HomeTabs" component={HomeTabs} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="SignUp" component={SignUp} />
