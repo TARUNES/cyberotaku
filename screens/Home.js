@@ -300,7 +300,7 @@ const Home = ({ navigation }) => {
             {/* <MaterialCommunityIcons name='timer-sand' size={50}></MaterialCommunityIcons> */}
             {/* <View> */}
 
-            <Text style={{ fontSize: 16, color: 'black', fontWeight: '500' }}>Name:      Dr. John Smith</Text>
+            <Text style={{ fontSize: 16, color: 'black', fontWeight: '500' }}>Name:      {name}</Text>
             <Text style={{ fontSize: 16, color: 'black', fontWeight: '500' }}>Date:         {date}</Text>
             <Text style={{ fontSize: 16, color: 'black', fontWeight: '500' }}>Time Slot: {timeslot}</Text>
             {/* </View> */}

@@ -47,6 +47,7 @@ const Doctorcomponent = ({
 
   const handleBookAppointment = () => {
     setIsAppointmentModalVisible(true);
+    setSelectedName(name);
   };
 
   const closeAppointmentModal = () => {
@@ -56,8 +57,12 @@ const Doctorcomponent = ({
   const handleTimeSlotPress = timeSlot => {
     setSelectedTimeSlot(timeSlot);
   };
+
+  const handleanmePress = timeSlot => {
+    setSelectedName(name);
+  };
   const ConfirmAppointment = () => {
-    setSelectedName(name)
+    // setSelectedName(name)
     const currentUser = firebase.auth().currentUser.uid;
     if (currentUser) {
         const userId = currentUser; // Get the user's ID
