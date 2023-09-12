@@ -16,11 +16,12 @@ const Onboard1 = ({navigation}) => {
             style={{
               alignSelf: 'center',
               marginTop: '10%',
-              fontSize: 25,
+              fontSize: 30,
               color: 'black',
               marginStart:'10%',
               marginEnd:'10%',
-              textAlign:'center'
+              textAlign:'center',
+              fontWeight:"600"
             }}>
             Get Started
           </Text>
@@ -30,10 +31,10 @@ const Onboard1 = ({navigation}) => {
               marginStart: '6%',
               marginEnd: '6%',
               marginVertical: '10%',
-              fontSize: 15,
+              fontSize: 20,
               color: 'black',
               textAlign:'center',
-              fontWeight:"800"
+              
             }}>
             Don't wait, schedule your appointment now and invest in your well-being
           </Text>
