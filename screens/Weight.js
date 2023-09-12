@@ -5,7 +5,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import { firebase } from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-import Toast from 'react-native-toast-message'; // Import the toast library
+import Toast from 'react-native-toast-message';
 const Weight = ({navigation}) => {
   const [inputValue, setInputValue] = useState('');
 
@@ -13,8 +13,8 @@ const Weight = ({navigation}) => {
     setInputValue(text);
     const currentUser = firebase.auth().currentUser.uid;
     if (currentUser) {
-        const userId = currentUser; // Get the user's ID
-        console.log('Current User ID:', userId); // Log the user's ID
+        const userId = currentUser; 
+        console.log('Current User ID:', userId); 
     } else {
         console.log('User is not authenticated.');
     }
@@ -61,7 +61,8 @@ const Weight = ({navigation}) => {
         <TextInput
           style={styles.mail}
           placeholder="Enter your Weight"
-          onChangeText={handleInputChange}
+          // onChangeText={handleInputChange}
+          onChangeText={text => setInputValue(text)}
           // value={Text}
           keyboardType = 'numeric'
           
@@ -69,7 +70,7 @@ const Weight = ({navigation}) => {
       </View>
 
       
-        <TouchableOpacity style={styles.btn} onPress={()=>handleNext}>
+        <TouchableOpacity style={styles.btn} onPress={handleInputChange}>
         <Feather name="chevron-right" size={30} color="white" />
         </TouchableOpacity>
         <Toast/>

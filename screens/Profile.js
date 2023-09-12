@@ -111,8 +111,8 @@ const Profile = (
         </View>
         <Image
           style={{
-            height: '96%',
-            width: '13%',
+            height: 40,
+            width: 40,
             resizeMode: 'contain',
             borderRadius: 100,
           }}
@@ -192,7 +192,7 @@ const Profile = (
       </View>
 
 
-      <TouchableOpacity
+      <TouchableOpacity onPress={()=>navigation.navigate('DrugCheck')}
         style={{
           height: '13%',
           width: '90%',
@@ -247,7 +247,7 @@ const Profile = (
           marginTop: '5%',
           backgroundColor: 'white',
           borderColor: 'lightgray',
-        }}>
+        }} onPress={() => navigation.navigate('Sceudle')}>
         <Image
           style={{
             height: '50%',

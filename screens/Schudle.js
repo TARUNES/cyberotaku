@@ -69,7 +69,7 @@ const Schudle = ({ navigation }) => {
                 <Image style={{ height: '55%', width: '20%', resizeMode: 'contain', marginVertical: '8%' }} source={require('../Assets/pill1.png')} />
                 <View style={{ justifyContent: 'center' }}>
                   <Text style={{ color: 'black', fontSize: 19 ,fontWeight:'600'}}>{item.PillName}</Text>
-                  <Text style={{ color: 'black', fontSize: 16,fontWeight:'00' }}>9.00 am</Text>
+                  <Text style={{ color: 'black', fontSize: 16,fontWeight:'400' }}>9.00 am</Text>
                 </View>
                 <View style={{ height: 60, width: '20%', borderWidth: 0.3, backgroundColor: 'white', borderRadius: 20, justifyContent: 'center', marginVertical: '4%' }}>
                   <Text style={{ textAlign: 'center' }}>1</Text>

@@ -10,6 +10,7 @@ const Height = ({navigation}) => {
 
   const handleInputChange = (text) => {
     setInputValue(text);
+    console.log("he");
     const currentUser = firebase.auth().currentUser.uid;
     if (currentUser) {
         const userId = currentUser; // Get the user's ID
@@ -56,13 +57,15 @@ const Height = ({navigation}) => {
         <TextInput
           style={styles.mail}
           placeholder="Enter your Height"
-          onChangeText={handleInputChange}
+          // onChangeText={handleInputChange}
+          onChangeText={text => setInputValue(text)}
+
           keyboardType="numeric" // This restricts input to numbers and floats
         />
       </View>
 
       <View style={styles.btn}>
-        <TouchableOpacity style={styles.button} onPress={()=>handleInputChange}>
+        <TouchableOpacity style={styles.button} onPress={handleInputChange}>
           <Feather name="chevron-right" size={30} color="white" />
         </TouchableOpacity>
       </View>

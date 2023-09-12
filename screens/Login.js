@@ -70,6 +70,7 @@ const Signin = ({navigation}) => {
         <TextInput
           style={styles.Password}
           placeholder="Enter your Password"
+          secureTextEntry={true}
           onChangeText={text => setpassword(text)}
           // value={Text}
         />
